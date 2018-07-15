@@ -51,8 +51,8 @@ def getSetUrls(indexurl):
             set_url = hosturl + parturl
             set_urls.append(set_url)
         return set_urls
-    except ConnectionResetError as e:
-        print(e)
+    except:
+        print("Error!")
 
 
 # Get pic urls
@@ -68,8 +68,8 @@ def getPicUrls(seturl):
         for each in tree.xpath('//*[@class="imgbox"]'):
             pic_urls = each.xpath('./img/@data-original')
         return pic_urls,new_title
-    except ConnectionResetError as e:
-        print(e)
+    except:
+        print("Error")
 
 # Download set pics
 def saveImgs(pic_urls,new_title):
@@ -90,8 +90,8 @@ def saveImgs(pic_urls,new_title):
             with open(pic_name,'wb') as f:
                 f.write(content)
                 print("正在下载：" + url)
-        except ConnectionResetError as e:
-            print(e)
+        except:
+            print("Error!")
     print("套图{}下载完毕！".format(new_title))
 
 
