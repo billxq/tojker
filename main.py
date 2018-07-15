@@ -81,18 +81,20 @@ def saveImgs(pic_urls,new_title):
     proxies = chooseProxy()
     if not os.path.exists(new_title):
         os.mkdir(new_title)
-    print("开始下载套图{}！".format(new_title))
-    for url in pic_urls:
-        try:
-            content = requests.get(url=url,headers=header,proxies=proxies).content
-            # pic_name = md5(content).hexdigest()
-            pic_name = projectdir + '/' + new_title + '/' + url.split('/')[-1]
-            with open(pic_name,'wb') as f:
-                f.write(content)
-                print("正在下载：" + url)
-        except:
-            print("Error!")
-    print("套图{}下载完毕！".format(new_title))
+        print("开始下载套图{}！".format(new_title))
+        for url in pic_urls:
+            try:
+                content = requests.get(url=url,headers=header,proxies=proxies).content
+                # pic_name = md5(content).hexdigest()
+                pic_name = projectdir + '/' + new_title + '/' + url.split('/')[-1]
+                with open(pic_name,'wb') as f:
+                    f.write(content)
+                    print("正在下载：" + url)
+            except:
+                print("Error!")
+        print("套图{}下载完毕！".format(new_title))
+    else:
+        print("套图已经存在！进入下一个套图的下载！")
 
 
 def main(set_url):
